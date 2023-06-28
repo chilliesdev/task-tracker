@@ -21,16 +21,12 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'email' => 'required|string|unique:users',
+            'email' => 'required|string|email|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'message' => $validator->messages()->toArray()
-            ], 400);
-        }
+        if ($validator->fails())
+            return $this->sendError("validation failed", $validator->messages()->toArray());
 
         // insert into the database
         User::create([
@@ -52,12 +48,12 @@ class AuthController extends Controller
     {
         // Validate the request data
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string',
+            'email' => 'required|email|string',
             'password' => 'required|min:6',
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->messages()->toArray());
+            return $this->sendError("validation failed", $validator->messages()->toArray());
         }
 
         // Retrieve credentials from the request

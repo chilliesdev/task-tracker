@@ -19,7 +19,7 @@ class Controller extends BaseController
      * @param int $statusCode The HTTP status code for the response (default: 200).
      * @return \Illuminate\Http\JsonResponse The JSON response containing the success status, data, and message.
      */
-    public function sendResponse($message, $data = null, $statusCode = 200)
+    public function sendResponse(string $message, $data = null, $statusCode = 200)
     {
         $response = [
             'success' => true,
@@ -38,7 +38,7 @@ class Controller extends BaseController
      * @param int $code The HTTP status code for the error (default: 404).
      * @return \Illuminate\Http\JsonResponse The JSON response containing the error status, message, and data (if provided).
      */
-    public function sendError($error, $errorMessages = [], $code = 404)
+    public function sendError($error, $errorMessages = [], $code = 400)
     {
         $response = [
             'success' => false,

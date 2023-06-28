@@ -6,7 +6,14 @@ module.exports = {
         "./resources/**/*.tsx",
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                sans: ["Open Sans", "sans-serif"],
+            },
+            colors: {
+                primary: "#0052CC",
+            },
+        },
     },
     plugins: [],
 };
