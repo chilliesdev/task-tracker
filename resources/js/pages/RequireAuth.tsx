@@ -35,11 +35,12 @@ export default function RequireAuth() {
     });
 
     useEffect(() => {
-        console.log("ran...");
         if (!user && token) {
             // if user basic info is null but has a token
             // get user basic info from server
             mutate(token);
+        } else {
+            setIsLoading(false);
         }
     }, []);
 
