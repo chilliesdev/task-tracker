@@ -3,7 +3,7 @@ import { Dropdown, Logo, ProfilePic } from ".";
 
 export default function Header() {
     return (
-        <header className="flex justify-between py-2 px-3 shadow-lg">
+        <header className="flex fixed w-screen justify-between bg-white py-2 px-3 shadow-lg z-10">
             <Logo full size="sm" />
             <Dropdown />
         </header>

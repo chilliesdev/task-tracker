@@ -5,7 +5,7 @@ export default function Container({ children }: { children: React.ReactNode }) {
     return (
         <div>
             <Header />
-            {children}
+            <div className="px-3 pt-16">{children}</div>
         </div>
     );
 }
