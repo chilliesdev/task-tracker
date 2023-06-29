@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.user');
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', [AuthController::class, 'user'])->name('profile.user');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout.user');
+
+    // Task CRUD API
+    Route::apiResource('tasks', TaskController::class);
 });
