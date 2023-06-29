@@ -91,12 +91,9 @@ export default function Login() {
                     error={errors.password && errors.password.message}
                     serverError={error?.response?.data.data?.password}
                 />
-                {isError &&
-                    error.response?.data.message !== "validation failed" && (
-                        <ErrorMessage>
-                            {error.response!.data.message}
-                        </ErrorMessage>
-                    )}
+                {isError && error.response?.status === 422 && (
+                    <ErrorMessage>{error.response!.data.message}</ErrorMessage>
+                )}
                 <Button loading={isLoading} type="submit">
                     Login
                 </Button>

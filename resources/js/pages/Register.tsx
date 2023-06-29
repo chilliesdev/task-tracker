@@ -81,12 +81,9 @@ export default function Register() {
                         error?.response?.data.data?.password_confirmation
                     }
                 />
-                {isError &&
-                    error.response?.data.message !== "validation failed" && (
-                        <ErrorMessage>
-                            {error.response!.data.message}
-                        </ErrorMessage>
-                    )}
+                {isError && error.response?.status === 422 && (
+                    <ErrorMessage>{error.response!.data.message}</ErrorMessage>
+                )}
                 <Button loading={isLoading} type="submit">
                     Register
                 </Button>
