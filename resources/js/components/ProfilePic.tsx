@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context";
+import ProfileImage from "./ProfileImage";
 
 export default function ProfilePic(
     props: React.DetailedHTMLProps<
@@ -19,15 +20,12 @@ export default function ProfilePic(
     }, [user]);
 
     return (
-        <img
-            {...props}
-            className={`${props.className} h-9 w-9 border-0 hover:border-4 border-opacity-75 border-primary cursor-pointer rounded-full`}
-            alt="Profile"
-            src={
-                user
-                    ? `https://ui-avatars.com/api/?name=${fullName}&background=random&rounded=true`
-                    : ""
-            }
-        />
+        <>
+            <ProfileImage
+                {...props}
+                name={fullName}
+                className={`${props.className} cursor-pointer hover:border-4`}
+            />
+        </>
     );
 }

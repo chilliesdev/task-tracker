@@ -9,6 +9,7 @@ import Input from "./Input";
 import LoadingScreen from "./LoadingScreen";
 import Logo from "./Logo";
 import ModalWrapper from "./ModalWrapper";
+import ProfileImage from "./ProfileImage";
 import ProfilePic from "./ProfilePic";
 import RichTextInput from "./RichTextInput";
 import SearchBox from "./SearchBox";
@@ -36,4 +37,5 @@ export {
     ModalWrapper,
     RichTextInput,
     SelectInput,
+    ProfileImage,
 };

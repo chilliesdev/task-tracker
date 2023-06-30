@@ -15,7 +15,7 @@ export default function TaskGroup({ status, tasks }: TaskGroupProps) {
     return (
         <div
             style={{
-                minWidth: "300px",
+                minWidth: "312px",
                 minHeight: "500px",
             }}
             className="px-3 font-bold bg-secondary border-0 border-opacity-0 rounded-sm mr-3"

@@ -16,7 +16,7 @@ export default function Home() {
         queryFn: () => getAllTasks(token!),
     });
 
-    const [tasks, setTasks] = useState<[Task] | []>([]);
+    const [tasks, setTasks] = useState<Task[] | []>([]);
 
     useEffect(() => {
         setTasks(data?.data.data || []);
