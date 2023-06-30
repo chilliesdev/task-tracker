@@ -28,7 +28,7 @@ export type Task = {
     user: User;
 };
 
-export type TaskStatus = "todo" | "in-progress" | "blocked" | "done";
+export type TaskStatus = "todo" | "in-progress" | "blocked" | "completed";
 
 export type User = {
     id: number;

@@ -83,7 +83,7 @@ export default function Detail() {
                             },
                             {
                                 name: "DONE",
-                                value: "done",
+                                value: "completed",
                             },
                         ]}
                         // label="Status"

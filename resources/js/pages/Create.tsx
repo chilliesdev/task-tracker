@@ -109,7 +109,7 @@ export default function Create() {
                         },
                         {
                             name: "DONE",
-                            value: "done",
+                            value: "completed",
                         },
                     ]}
                     label="Status"

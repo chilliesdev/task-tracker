@@ -45,7 +45,7 @@ export default function Home() {
                 <TaskGroup status="todo" tasks={tasks} />
                 <TaskGroup status="in-progress" tasks={tasks} />
                 <TaskGroup status="blocked" tasks={tasks} />
-                <TaskGroup status="done" tasks={tasks} />
+                <TaskGroup status="completed" tasks={tasks} />
             </div>
             <Outlet />
         </>

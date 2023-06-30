@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const createTaskFormSchema = Yup.object().shape({
     title: Yup.string().required("Title is required"),
     description: Yup.string().required("Description is required"),
-    status: Yup.string().oneOf(["todo", "in-progress", "blocked", "done"]),
+    status: Yup.string().oneOf(["todo", "in-progress", "blocked", "completed"]),
 });
 
 export const createTaskFormResolver = yupResolver(createTaskFormSchema);
