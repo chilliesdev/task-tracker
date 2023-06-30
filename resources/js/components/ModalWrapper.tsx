@@ -9,6 +9,8 @@ export default function ModalWrapper({
     children,
     title,
     primaryButton,
+    secondaryButton,
+    footer = true,
 }: ModalWrapperProps) {
     const navigate = useNavigate();
 
@@ -19,45 +21,61 @@ export default function ModalWrapper({
     }
 
     return (
-        <>
+        <div
+            // onClick={goBack}
+            style={{
+                background: "rgba(0, 0, 0, 0.15)",
+            }}
+            className="absolute top-0 bottom-0 left-0 right-0"
+        >
             <div
-                // onClick={goBack}
-                style={{
-                    background: "rgba(0, 0, 0, 0.15)",
-                }}
-                className="absolute top-0 bottom-0 left-0 right-0"
+                style={{ top: "70px" }}
+                className="absolute pt-8 w-1/2 h-3/4 left-1/4 bg-white rounded-md shadow-sm z-10"
             >
-                <div
-                    style={{ top: "70px" }}
-                    className="absolute pt-8 w-1/2 h-3/4 left-1/4 bg-white rounded-md shadow-sm z-10"
-                >
-                    <div className="flex px-5 pb-4 justify-between items-center">
-                        <h5 className="text-2xl font-semibold">{title}</h5>
+                <div className="flex px-5 pb-4 justify-between items-center">
+                    <h5 className="text-2xl font-semibold">{title}</h5>
+                    <div className="flex items-center">
+                        {secondaryButton && (
+                            <Button
+                                color="bg-red-600"
+                                onClick={secondaryButton.onClick}
+                                disabled={secondaryButton.disabled}
+                                size="sm"
+                            >
+                                {secondaryButton.name}
+                            </Button>
+                        )}
                         <GrClose
-                            className="cursor-pointer"
-                            onClick={() => goBack}
+                            className="cursor-pointer ml-4"
+                            onClick={() => navigate(-1)}
                         />
                     </div>
-                    <hr />
-                    <div className="h-3/4 px-5 pt-5">{children}</div>
-                    <hr />
-                    <div className="flex pt-4 px-5 justify-end items-center">
-                        <p
-                            className="font-bold text-gray-700 cursor-pointer mr-5"
-                            onClick={goBack}
-                        >
-                            Cancel
-                        </p>
-                        <Button
-                            onClick={primaryButton.onClick}
-                            loading={primaryButton.isLoading}
-                            size="sm"
-                        >
-                            {primaryButton.name}
-                        </Button>
-                    </div>
                 </div>
+                <hr />
+                <div className="h-3/4 px-5 pt-5 overflow-auto">{children}</div>
+                {footer && (
+                    <>
+                        <hr />
+                        <div className="flex pt-4 px-5 justify-end items-center">
+                            <p
+                                className="font-bold text-gray-700 cursor-pointer mr-5"
+                                onClick={goBack}
+                            >
+                                Cancel
+                            </p>
+                            {primaryButton && (
+                                <Button
+                                    onClick={primaryButton.onClick}
+                                    loading={primaryButton.isLoading}
+                                    size="sm"
+                                >
+                                    {primaryButton.name}
+                                </Button>
+                            )}
+                        </div>
+                    </>
+                )}
             </div>
-        </>
+        </div>
     );
 }

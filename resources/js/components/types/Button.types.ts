@@ -4,4 +4,5 @@ export interface ButtonProps
     children: React.ReactNode;
     loading?: boolean;
     transparent?: boolean;
+    color?: string;
 }

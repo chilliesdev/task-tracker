@@ -43,3 +43,13 @@ export type CreateTasksParam = {
     token: string;
     data: CreateTaskInput;
 };
+
+export type getTaskByIdParam = {
+    token: string;
+    taskId: number;
+};
+
+export type deleteTaskByIdParam = {
+    token: string;
+    taskId: number;
+};

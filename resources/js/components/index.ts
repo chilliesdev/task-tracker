@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Container from "./Container";
+import DeletePopup from "./DeletePopup";
 import Dropdown from "./Dropdown";
 import DropdownList from "./DropdownList";
 import ErrorMessage from "./ErrorMessage";
@@ -38,4 +39,5 @@ export {
     RichTextInput,
     SelectInput,
     ProfileImage,
+    DeletePopup,
 };

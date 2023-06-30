@@ -14,6 +14,7 @@ export default function Home() {
     const { data } = useQuery({
         queryKey: ["tasks", token!],
         queryFn: () => getAllTasks(token!),
+        refetchOnWindowFocus: true,
     });
 
     const [tasks, setTasks] = useState<Task[] | []>([]);

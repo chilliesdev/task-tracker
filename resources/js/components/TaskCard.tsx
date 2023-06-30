@@ -2,10 +2,21 @@ import React from "react";
 import { TaskCardProps } from "./types";
 import ProfileImage from "./ProfileImage";
 import { BiTask } from "react-icons/bi";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function TaskCard({ title, username, id }: TaskCardProps) {
+    const navigate = useNavigate();
+    const location = useLocation();
+
     return (
         <div
+            onClick={() =>
+                navigate(`/task/${id}`, {
+                    state: {
+                        previousLocation: location,
+                    },
+                })
+            }
             style={{
                 border: "1px",
             }}

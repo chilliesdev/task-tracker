@@ -1,7 +1,45 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { SERVER_URL } from "../config";
-import { CreateTasksParam, Task, responseSuccess } from "./types";
+import {
+    CreateTasksParam,
+    Task,
+    deleteTaskByIdParam,
+    getTaskByIdParam,
+    responseSuccess,
+} from "./types";
 import { CreateTaskInput } from "../pages/types";
+
+export async function deleteTaskById({
+    token,
+    taskId,
+}: deleteTaskByIdParam): Promise<AxiosResponse<responseSuccess>> {
+    const config: AxiosRequestConfig = {
+        baseURL: SERVER_URL,
+        method: "DELETE",
+        url: `/tasks/${taskId}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    return await axios(config);
+}
+
+export async function getTaskById({
+    token,
+    taskId,
+}: getTaskByIdParam): Promise<AxiosResponse<responseSuccess<Task>>> {
+    const config: AxiosRequestConfig = {
+        baseURL: SERVER_URL,
+        method: "GET",
+        url: `/tasks/${taskId}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    return await axios(config);
+}
 
 export async function createTasks({
     token,

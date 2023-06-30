@@ -6,6 +6,7 @@ import Logout from "./Logout";
 import Register from "./Register";
 import RequireAuth from "./RequireAuth";
 import Create from "./Create";
+import Detail from "./Detail";
 
 export {
     Login,
@@ -16,4 +17,5 @@ export {
     Home,
     Header,
     Create,
+    Detail,
 };

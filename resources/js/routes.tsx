@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
 import {
     Create,
+    Detail,
     ErrorPage,
     Home,
     Login,
@@ -20,6 +21,7 @@ const routes = () => {
                 <Route path="/" element={<RequireAuth />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/create" element={<Create />} />
+                    <Route path="/task/:id" element={<Detail />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
@@ -30,6 +32,7 @@ const routes = () => {
                 <Routes>
                     {/* Modal routes */}
                     <Route path="/create" element={<Create />} />
+                    <Route path="/task/:id" element={<Detail />} />
                 </Routes>
             )}
         </>
