@@ -3,20 +3,46 @@ import { InputProps } from "./types";
 import ErrorMessage from "./ErrorMessage";
 
 function Input(
-    { label, error, serverError, ...props }: InputProps,
+    {
+        label,
+        error,
+        serverError,
+        inputSize = "lg",
+        Icon,
+        width,
+        className,
+        ...props
+    }: InputProps,
     ref: React.LegacyRef<HTMLInputElement> | undefined | string
 ) {
     return (
-        <div>
+        <div
+            style={{
+                width: width ? width : inputSize == "lg" ? "300px" : "120px",
+                height: inputSize == "lg" ? "50px" : "35px",
+            }}
+            className={className ? className : "mb-6"}
+        >
             {label && <label htmlFor={props.name}>{label}</label>}
+            {Icon && (
+                <Icon
+                    style={{
+                        marginLeft: "auto",
+                        marginRight: "6px",
+                        position: "relative",
+                        top: "25px",
+                        zIndex: "-1",
+                    }}
+                />
+            )}
             <input
+                style={{
+                    width: "100%",
+                    height: "100%",
+                }}
                 {...props}
                 ref={ref}
-                style={{
-                    width: "300px",
-                    height: "50px",
-                }}
-                className="text-base rounded-sm mb-2 bg-transparent box-border border-2 border-gray-300 px-1 focus:border-gray-300 focus:border-opacity-100 border-opacity-75"
+                className="text-base rounded-sm bg-transparent box-border border-2 border-gray-300 px-1 border-opacity-75 focus:border-gray-300 focus:border-opacity-100"
             />
             {/* handle input field errors */}
             {error && <ErrorMessage>{error}</ErrorMessage>}

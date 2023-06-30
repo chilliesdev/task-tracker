@@ -5,5 +5,15 @@ import Login from "./Login";
 import Logout from "./Logout";
 import Register from "./Register";
 import RequireAuth from "./RequireAuth";
+import Create from "./Create";
 
-export { Login, Register, ErrorPage, Logout, RequireAuth, Home, Header };
+export {
+    Login,
+    Register,
+    ErrorPage,
+    Logout,
+    RequireAuth,
+    Home,
+    Header,
+    Create,
+};

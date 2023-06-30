@@ -1,4 +1,4 @@
 export type FormProps = {
-    onSubmit: React.FormEventHandler<HTMLFormElement> | undefined;
+    onSubmit?: React.FormEventHandler<HTMLFormElement> | undefined;
     children: React.ReactNode;
 };

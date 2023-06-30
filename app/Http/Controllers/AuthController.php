@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         // If the user does not exist, return an error
         if (!$user) {
-            return $this->sendError("Sorry, this user does not exist");
+            return $this->sendError("Sorry, this user does not exist", [], 422);
         }
 
         // Attempt to log the user in

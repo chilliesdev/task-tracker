@@ -94,7 +94,7 @@ export default function Login() {
                 {isError && error.response?.status === 422 && (
                     <ErrorMessage>{error.response!.data.message}</ErrorMessage>
                 )}
-                <Button loading={isLoading} type="submit">
+                <Button size="lg" loading={isLoading} type="submit">
                     Login
                 </Button>
             </Form>

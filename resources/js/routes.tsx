@@ -1,33 +1,39 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ErrorPage, Home, Login, Logout, Register, RequireAuth } from "./pages";
+import { Routes, Route, useLocation, BrowserRouter } from "react-router-dom";
+import {
+    Create,
+    ErrorPage,
+    Home,
+    Login,
+    Logout,
+    Register,
+    RequireAuth,
+} from "./pages";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <RequireAuth />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: "/",
-                element: <Home />,
-            },
-        ],
-    },
-    {
-        path: "/login",
-        element: <Login />,
-    },
-    {
-        path: "/register",
-        element: <Register />,
-    },
-    {
-        path: "/logout",
-        element: <Logout />,
-    },
-]);
+const routes = () => {
+    const location = useLocation();
+    const previousLocation = location.state?.previousLocation;
 
-export default function routes() {
-    return <RouterProvider router={router} />;
-}
+    return (
+        <>
+            <Routes location={previousLocation || location}>
+                <Route path="/" element={<RequireAuth />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/create" element={<Create />} />
+                </Route>
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
+            {previousLocation && (
+                <Routes>
+                    {/* Modal routes */}
+                    <Route path="/create" element={<Create />} />
+                </Routes>
+            )}
+        </>
+    );
+};
+
+export default routes;

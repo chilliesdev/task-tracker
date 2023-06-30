@@ -84,7 +84,7 @@ export default function Register() {
                 {isError && error.response?.status === 422 && (
                     <ErrorMessage>{error.response!.data.message}</ErrorMessage>
                 )}
-                <Button loading={isLoading} type="submit">
+                <Button size="lg" loading={isLoading} type="submit">
                     Register
                 </Button>
             </Form>

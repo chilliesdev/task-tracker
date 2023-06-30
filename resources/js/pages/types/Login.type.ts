@@ -15,6 +15,12 @@ export type LoginResponseData = {
     email_verified_at: Date | null;
 };
 
+export type CreateTaskValidationError = {
+    title?: string[];
+    description?: string[];
+    status?: string[];
+};
+
 export type LocationState = {
     from: {
         pathname: string;

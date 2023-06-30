@@ -8,7 +8,13 @@ import Header from "./Header";
 import Input from "./Input";
 import LoadingScreen from "./LoadingScreen";
 import Logo from "./Logo";
+import ModalWrapper from "./ModalWrapper";
 import ProfilePic from "./ProfilePic";
+import RichTextInput from "./RichTextInput";
+import SearchBox from "./SearchBox";
+import SelectInput from "./SelectInput";
+import TaskCard from "./TaskCard";
+import TaskGroup from "./TaskGroup";
 import Wrapper from "./Warapper";
 
 export {
@@ -24,4 +30,10 @@ export {
     Header,
     DropdownList,
     Dropdown,
+    SearchBox,
+    TaskGroup,
+    TaskCard,
+    ModalWrapper,
+    RichTextInput,
+    SelectInput,
 };
