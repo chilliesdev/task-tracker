@@ -1,5 +1,9 @@
 FROM richarvey/nginx-php-fpm:latest
 
+RUN apt-get -y install \
+    npm \
+    node \
+
 COPY . .
 
 # Image config
