@@ -1,8 +1,6 @@
 FROM richarvey/nginx-php-fpm:latest
 
-RUN apt-get -y install \
-    npm \
-    node \
+RUN apk add --update nodejs npm
 
 COPY . .
 
