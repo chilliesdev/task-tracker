@@ -16,4 +16,4 @@ echo "Install npm packages"
 npm install
 
 echo "Run build"
-npm build
+npm run build
