@@ -16,4 +16,4 @@ echo "Install npm packages..."
 npm install
 
 echo "Run build..."
-npm run build --max-old-space-size=256
+npm run build --max-old-space-size=128
