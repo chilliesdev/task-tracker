@@ -11,9 +11,3 @@ php artisan route:cache
 
 echo "Running migrations..."
 php artisan migrate --force
-
-echo "Install npm packages..."
-npm install
-
-echo "Run build..."
-npm run build --max-old-space-size=1024
