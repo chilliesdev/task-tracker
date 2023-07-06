@@ -32,7 +32,7 @@ An app were a user can signup, login, add task, get tasks and delete tasks
 
 ### Links
 
--   Live Site URL: [Task Tracker](/)
+-   Live Site URL: [Task Tracker](https://task-tracker-x3g8.onrender.com/)
 -   Solution URL: [Github](https://github.com/chilliesdev/task-tracker)
 
 ### Demo Account
