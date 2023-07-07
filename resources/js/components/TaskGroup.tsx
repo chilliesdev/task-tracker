@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { TaskGroupProps } from "./types";
 import { Task } from "../api/types";
 import { TaskCard } from ".";
+import Skeleton from "react-loading-skeleton";
 
-export default function TaskGroup({ status, tasks }: TaskGroupProps) {
+export default function TaskGroup({
+    status,
+    tasks,
+    isLoading,
+}: TaskGroupProps) {
     const [filteredTask, setFilteredTask] = useState<Task[] | []>([]);
 
     useEffect(() => {
@@ -20,17 +25,23 @@ export default function TaskGroup({ status, tasks }: TaskGroupProps) {
             }}
             className="px-3 font-bold bg-secondary border-0 border-opacity-0 rounded-sm mr-3"
         >
-            <h5 className="uppercase text-sm text-gray-700 block py-5">{`${status} ${
-                filteredTask.length > 0 ? filteredTask.length : ""
-            }  TASKS`}</h5>
-            {filteredTask.map((task) => (
-                <TaskCard
-                    key={task.id}
-                    id={task.id}
-                    title={task.title}
-                    username={task.user.name}
-                />
-            ))}
+            {isLoading ? (
+                <Skeleton className="h-full" />
+            ) : (
+                <>
+                    <h5 className="uppercase text-sm text-gray-700 block py-5">{`${status} ${
+                        filteredTask.length > 0 ? filteredTask.length : ""
+                    }  TASKS`}</h5>
+                    {filteredTask.map((task) => (
+                        <TaskCard
+                            key={task.id}
+                            id={task.id}
+                            title={task.title}
+                            username={task.user.name}
+                        />
+                    ))}
+                </>
+            )}
         </div>
     );
 }
