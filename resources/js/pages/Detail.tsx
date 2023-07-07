@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     DeletePopup,
     ModalWrapper,
@@ -6,33 +6,50 @@ import {
     SelectInput,
 } from "../components";
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getTaskById } from "../api";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getTaskById, updateTaskById } from "../api";
 import { AuthContext } from "../context";
-import { Task } from "../api/types";
+import { Task, TaskStatus } from "../api/types";
 import Skeleton from "react-loading-skeleton";
+import { useForm } from "react-hook-form";
+import { UpdateStatusInput } from "./types/Detail.type";
 
 export default function Detail() {
+    // get task id from url
     const { id } = useParams();
 
     const { token } = useContext(AuthContext);
 
     const [showDeletePopup, setShowDeletePopup] = useState(false);
-    const [task, setTask] = useState<Task>();
+
+    // initialize form params
+    const { register } = useForm<UpdateStatusInput>();
 
     const params = {
         token: token!,
         taskId: parseInt(id!),
     };
 
+    // get all tasks from
     const { data, isLoading } = useQuery({
         queryKey: ["task", params],
         queryFn: () => getTaskById(params),
     });
 
-    useEffect(() => {
-        setTask(data?.data.data);
-    }, [data]);
+    // update task status request
+    const { isLoading: isUpdating, mutate: updateStatus } =
+        useMutation(updateTaskById);
+
+    function handleUpdate(e: any) {
+        updateStatus({
+            ...params,
+            data: {
+                status: e.target.value as TaskStatus,
+            },
+        });
+    }
+
+    const task: Task | undefined = data?.data.data;
 
     return (
         <ModalWrapper
@@ -66,8 +83,12 @@ export default function Detail() {
                 <>
                     {" "}
                     <SelectInput
-                        disabled={true}
+                        {...register("status", {
+                            onChange: handleUpdate,
+                        })}
+                        disabled={isUpdating}
                         defaultValue={task?.status}
+                        isLoading={isUpdating}
                         options={[
                             {
                                 name: "TODO",

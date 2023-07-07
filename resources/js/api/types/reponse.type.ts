@@ -1,4 +1,5 @@
 import { CreateTaskInput } from "../../pages/types";
+import { UpdateStatusInput } from "../../pages/types/Detail.type";
 
 export type responseError<T = any> = {
     message: string;
@@ -52,4 +53,10 @@ export type getTaskByIdParam = {
 export type deleteTaskByIdParam = {
     token: string;
     taskId: number;
+};
+
+export type updateTaskByIdParam = {
+    token: string;
+    taskId: number;
+    data: UpdateStatusInput;
 };

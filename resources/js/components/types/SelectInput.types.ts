@@ -15,4 +15,5 @@ export interface SelectInputProps
     label?: string;
     error?: string | undefined;
     serverError?: string[];
+    isLoading?: boolean;
 }

@@ -6,8 +6,26 @@ import {
     deleteTaskByIdParam,
     getTaskByIdParam,
     responseSuccess,
+    updateTaskByIdParam,
 } from "./types";
 import { CreateTaskInput } from "../pages/types";
+
+export async function updateTaskById({
+    token,
+    taskId,
+    data,
+}: updateTaskByIdParam): Promise<AxiosResponse<responseSuccess>> {
+    const config: AxiosRequestConfig = {
+        baseURL: SERVER_URL,
+        method: "PATCH",
+        url: `/tasks/${taskId}`,
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+
+    return await axios(config);
+}
 
 export async function deleteTaskById({
     token,
