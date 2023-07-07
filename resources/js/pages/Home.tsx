@@ -1,28 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, SearchBox, TaskGroup } from "../components";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { getAllTasks } from "../api";
-import { AuthContext } from "../context";
 import { Task } from "../api/types";
-import Skeleton from "react-loading-skeleton";
+import { TaskContext } from "../context/task";
 
 export default function Home() {
     const location = useLocation();
 
-    const { token } = useContext(AuthContext);
+    const { data, isLoading } = useContext(TaskContext);
 
-    const { data, isLoading } = useQuery({
-        queryKey: ["tasks", token!],
-        queryFn: () => getAllTasks(token!),
-        refetchOnWindowFocus: true,
-    });
-
-    const [tasks, setTasks] = useState<Task[] | []>([]);
-
-    useEffect(() => {
-        setTasks(data?.data.data || []);
-    }, [data]);
+    const tasks: Task[] | [] = data?.data.data || [];
 
     return (
         <>

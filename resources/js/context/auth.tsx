@@ -1,16 +1,5 @@
 import React, { useState, createContext } from "react";
-import { LoginResponseData } from "../pages/types";
-
-type AuthContextType = {
-    token: string | null;
-    user: LoginResponseData | null;
-    setToken: (token: any) => void;
-    setUser: (user: any) => void;
-};
-
-type AuthProviderProps = {
-    children: React.ReactNode;
-};
+import { AuthContextType, AuthProviderProps } from "./types/auth.type";
 
 export const AuthContext = createContext<AuthContextType>({
     token: localStorage.getItem("token"),

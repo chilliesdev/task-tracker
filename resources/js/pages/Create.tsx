@@ -19,11 +19,12 @@ import {
     Task,
 } from "../api/types";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context";
+import { AuthContext, TaskContext } from "../context";
 
 export default function Create() {
     // get JWT token from context
     const { token } = useContext(AuthContext);
+    const { refetch } = useContext(TaskContext);
 
     const navigate = useNavigate();
 
@@ -43,6 +44,9 @@ export default function Create() {
         CreateTasksParam
     >(createTasks, {
         onSuccess: (data) => {
+            // refetch all tasks from Server
+            refetch();
+
             // go to home
             navigate("/");
         },

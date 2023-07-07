@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { Button } from ".";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { deleteTaskById } from "../api";
 import { useNavigate } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
-import { AuthContext } from "../context";
+import { AuthContext, TaskContext } from "../context";
 
 export default function DeletePopup({
     id,
@@ -14,11 +14,15 @@ export default function DeletePopup({
     close: () => void;
 }) {
     const { token } = useContext(AuthContext);
+    const { refetch } = useContext(TaskContext);
 
     const navigate = useNavigate();
 
     const { isLoading, mutate } = useMutation(deleteTaskById, {
         onSuccess: () => {
+            // refetch all tasks from Server
+            refetch();
+
             // close model
             close();
 

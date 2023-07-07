@@ -19,6 +19,7 @@ export async function updateTaskById({
         baseURL: SERVER_URL,
         method: "PATCH",
         url: `/tasks/${taskId}`,
+        data,
         headers: {
             Authorization: `Bearer ${token}`,
         },

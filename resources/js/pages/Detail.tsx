@@ -8,7 +8,7 @@ import {
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getTaskById, updateTaskById } from "../api";
-import { AuthContext } from "../context";
+import { AuthContext, TaskContext } from "../context";
 import { Task, TaskStatus } from "../api/types";
 import Skeleton from "react-loading-skeleton";
 import { useForm } from "react-hook-form";
@@ -19,6 +19,7 @@ export default function Detail() {
     const { id } = useParams();
 
     const { token } = useContext(AuthContext);
+    const { refetch } = useContext(TaskContext);
 
     const [showDeletePopup, setShowDeletePopup] = useState(false);
 
@@ -37,8 +38,15 @@ export default function Detail() {
     });
 
     // update task status request
-    const { isLoading: isUpdating, mutate: updateStatus } =
-        useMutation(updateTaskById);
+    const { isLoading: isUpdating, mutate: updateStatus } = useMutation(
+        updateTaskById,
+        {
+            onSuccess: () => {
+                // refetch all tasks from Server
+                refetch();
+            },
+        }
+    );
 
     function handleUpdate(e: any) {
         updateStatus({
